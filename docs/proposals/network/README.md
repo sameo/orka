@@ -63,7 +63,6 @@ The goal is to be able to:
 ### Components list of a minimal k8s (sample)
 
 - **CNI plugins** (us)
-- **DNS server/forwarder** (us)
 - etcd (not us)
 - scheduler (not us)
 - apiserver (not us)
@@ -104,4 +103,14 @@ There are 3 methods available:
 As specified by the CNI
 documentation ([Execution protocol](https://www.cni.dev/docs/spec/#section-2-execution-protocol)):
 
-> ⚠️ Working on it...
+The *runtime* passes parameters to the *plugin* via:
+
+- environment variables
+- configuration: it supplies configuration via stdin (mostly JSON)
+
+The plugin returns a result on stdout on success, or an error on stderr if the operation fails.
+Configuration and results are encoded in JSON.
+
+### Simple CNI plugin
+
+> We need to define a first plugin to create network interface inside a Pod
