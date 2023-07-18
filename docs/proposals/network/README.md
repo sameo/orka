@@ -37,23 +37,28 @@ The goal is to be able to:
 - isolate instance/pods with isolated networks
 - apply network security policies
 
-Options:
-
-- a library to manage networks directly from the Node Agent
-- a deamon running on each worker nodes and another on the master node
-
 ### Scope
 
-- Network security policy (access control, filtering, firewall, iptables... ?)  
-  "NetworkPolicy describes what network traffic is allowed for a set of Pods"
-- Virtual isolated networks by default
+- Pod-to-Pod network packets on the same host
+	- Firewall (e.g. iptables)
+		- Need to ACCEPT FORWARDING traffic for pod CIDR because packets are dropped by the Linux kernel by default  
+		  (Linux treats network packets in non-default network namespaces as external packets by default)
+	- Allow outgoing internet
+- Cross-node pod-to-pod network packets
 - Port mapping / Selectors pods
 - DNS routing (e.g. ingress controller)
-- DNS resolution (e.g. coreDNS)
-- Monitoring network traffic (e.g. metrics-server)
-- Load balancing (e.g. klipper, metallb, service)
-- Streaming(?)
-- kube-proxy
+- DNS resolution (e.g. coreDNS) -> pod-to-pod and pod-to-service
+	- "<NAME_SVC>.<NAMESPACE>.svc.cluster.local"
+	- "<POD_IP_WITH_DASH_INSTEAD_DOT>.<NAMESPACE>.pod.cluster.local"
+
+### Out of scope
+
+| Not for now                                      | Not for us |
+|--------------------------------------------------|------------|
+| RBAC, Network Policies                           | kube proxy |
+| Monitoring network traffic (e.g. metrics-server) |            |
+| Load balancing (e.g. service)                    |            | 
+| Load balancer (e.g. klipper, metallb)            |            |
 
 ### Components list of a minimal k8s (sample)
 
