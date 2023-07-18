@@ -4,22 +4,17 @@
 
 ### Examples
 
-- Canal
+- Flannel: good example, focused on networking
 - Calico
-- Flannel
 - Weave
 - Cilium
 
-![benchmark-cni](https://miro.medium.com/v2/resize:fit:1400/1*zDiFQZVXuL923x0LbmXMaA.png)
-
 ### Sources
 
-- [CNI](https://github.com/containernetworking/cni) also makes a good framework for creating a new container networking project from scratch
-- [Networks - treeptik k8s](https://treeptik.gitbook.io/k8s/fundamentals/)network
+- [CNI](https://github.com/containernetworking/cni) also make a good framework for creating a new container networking project from scratch
+- [Networks - treeptik k8s](https://treeptik.gitbook.io/k8s/fundamentals/)
 - [Explain NS linux](https://www.youtube.com/watch?v=j_UUnlVC2Ss)
-- [Spec - CNI](https://github.com/containernetworking/cni/blob/main/SPEC.md)
-
-<br>
+- [Spec - CNI](https://www.cni.dev/docs/spec/)
 
 ## Network domain
 
@@ -51,10 +46,9 @@ Options:
 
 ### Components list of a minimal k8s (sample)
 
-- **coreDNS** (us)
+- **CNI plugins** (us)
+- **DNS server/forwarder** (us)
 - etcd (not us)
-- **cni** (us)
-- **kube-proxy** (us)
 - scheduler (not us)
 - apiserver (not us)
 - controller (not us)
