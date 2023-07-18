@@ -18,7 +18,18 @@
 
 ## Network domain
 
+### Vocabulary
+
+- *runtime* is the program responsible for executing CNI plugins
+- *plugin* is a program that applies a specified network configuration
+
 ### Definition
+
+The *plugins* (= binaries) needs to be installed on every node in the cluster.
+
+For that, we have to create *plugins* (= binaries) implementing the CNI specifications.
+
+That way, the *runtime* (e.g. the node agent) can use the *plugins* to create network interfaces between pods.
 
 The goal is to be able to:
 
