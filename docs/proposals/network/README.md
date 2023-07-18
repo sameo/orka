@@ -71,6 +71,37 @@ The goal is to be able to:
 
 ## API - Component interface
 
-3 services to define. (see above :arrow_up:)
+### CNI
+
+#### Configuration
+
+Configuration files (`.conf`) are located in `/etc/cni/net.d/`.
+
+Example of a configuration file:
+
+```
+{
+    "cniVersion": "<VERSION>",
+    "name": "<CNI_NAME>",
+    "type": "<CNI_BINARY_NAME>",
+    // other variables to pass to binary
+}
+```
+
+Each configuration file references a CNI plugin (= binary).
+
+#### CNI plugins (binary)
+
+**CNI binary** to put in `/opt/cni/bin/`.
+
+There are 3 methods available:
+
+- `ADD` create a network interface
+- `DELETE` delete a network interface
+- `CHECK` check if the configuration is as expected
+- `VERSION` (optional for us) the cni version of the command
+
+As specified by the CNI
+documentation ([Execution protocol](https://www.cni.dev/docs/spec/#section-2-execution-protocol)):
 
 > ⚠️ Working on it...
