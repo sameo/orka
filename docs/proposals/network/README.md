@@ -18,7 +18,7 @@
 
 ## Network domain
 
-### Vocabulary
+### Glossary
 
 - *runtime* is the program responsible for executing CNI plugins
 - *plugin* is a program that applies a specified network configuration
