@@ -59,14 +59,6 @@ The goal is to be able to:
 - Load balancing (e.g. service)
 - Load balancer (e.g. klipper, metallb)
 
-### Components list of a minimal k8s (sample)
-
-- **CNI plugins** (us)
-- etcd (not us)
-- scheduler (not us)
-- apiserver (not us)
-- controller (not us)
-
 ## API - Component interface
 
 ### CNI
