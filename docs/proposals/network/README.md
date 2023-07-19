@@ -26,17 +26,19 @@
 
 ### Definition
 
-The *plugins* must be installed on every node in the cluster.
+The **orka SDN** implements the [`CNI`](https://www.cni.dev/docs/spec/) specification.
 
-For that, we have to create *plugins* implementing the CNI specifications.
-
-That way, the *runtime* (e.g. the node agent) can use the *plugins* to create network interfaces between pods.
+It is a **CNI plugin** and must be called by e.g. the node Agent through the `CNI` specified
+command line interface. It configure workloads networking according to a set of `CNI`
+compliant configuration files, as described in the following sections.
 
 The goal is to be able to:
 
 - manage networks through the software
 - isolate instance/pods with isolated networks
 - apply network security policies
+
+The *plugins* must be installed on every node in the cluster.
 
 ### Scope
 
