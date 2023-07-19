@@ -20,14 +20,15 @@
 
 ### Glossary
 
-- *runtime* is the program responsible for executing CNI plugins
-- *plugin* is a program that applies a specified network configuration
+- *runtime* is the program responsible for executing CNI plugins.
+- *plugin* is a program that applies a specified network configuration.  
+  (it's a binary or an executable)
 
 ### Definition
 
-The *plugins* (= binaries) needs to be installed on every node in the cluster.
+The *plugins* must be installed on every node in the cluster.
 
-For that, we have to create *plugins* (= binaries) implementing the CNI specifications.
+For that, we have to create *plugins* implementing the CNI specifications.
 
 That way, the *runtime* (e.g. the node agent) can use the *plugins* to create network interfaces between pods.
 
@@ -83,15 +84,15 @@ Example of a configuration file:
     "cniVersion": "<VERSION>",
     "name": "<CNI_NAME>",
     "type": "<CNI_BINARY_NAME>",
-    // other variables to pass to binary
+    // other variables to pass to plugin
 }
 ```
 
-Each configuration file references a CNI plugin (= binary).
+Each configuration file references a CNI plugin.
 
-#### CNI plugins (binary)
+#### CNI plugins
 
-**CNI binary** to put in `/opt/cni/bin/`.
+**CNI plugin** are located in `/opt/cni/bin/`.
 
 There are 3 methods available:
 
