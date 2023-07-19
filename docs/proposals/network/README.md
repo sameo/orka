@@ -54,12 +54,10 @@ The goal is to be able to:
 
 ### Out of scope
 
-| Not for now                                      | Not for us |
-|--------------------------------------------------|------------|
-| RBAC, Network Policies                           | kube proxy |
-| Monitoring network traffic (e.g. metrics-server) |            |
-| Load balancing (e.g. service)                    |            | 
-| Load balancer (e.g. klipper, metallb)            |            |
+- RBAC, Network Policies
+- Monitoring network traffic (e.g. metrics-server)
+- Load balancing (e.g. service)
+- Load balancer (e.g. klipper, metallb)
 
 ### Components list of a minimal k8s (sample)
 
