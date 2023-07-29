@@ -4,6 +4,7 @@
 
 ### Examples
 
+- [Flannel](https://www.tkng.io/cni/flannel/)
 - [Kindnet](https://www.tkng.io/cni/kindnet/)
 
 ### Sources
@@ -63,45 +64,51 @@ The *plugins* must be installed on every node in the cluster.
 
 ### CNI
 
-#### Configuration
+#### Provision phase
 
-Configuration files (`.conf`) are located in `/etc/cni/net.d/`.
+At the node creation, the node agent needs to download/set the binaries and the configuration file:
 
-Example of a configuration file:
+- the CNI plugin is located in `/opt/cni/bin/`
+- [configuration files](https://www.cni.dev/docs/spec/#example-configuration) (`.conf`) are located in `/etc/cni/net.d/`
 
-```
-{
-    "cniVersion": "<VERSION>",
-    "name": "<CNI_NAME>",
-    "type": "<CNI_BINARY_NAME>",
-    // other variables to pass to plugin
-}
-```
+Our configuration file for Orka SDN (`10-orka-sdn.conf`):
 
-Each configuration file references a CNI plugin.
+> TODO: Configuration file `10-orka-sdn.conf`
 
-#### CNI plugins
+#### Runtime phase
 
-**CNI plugin** are located in `/opt/cni/bin/`.
-
-There are 3 methods available:
+There are 4 methods available:
 
 - `ADD` create a network interface
 - `DELETE` delete a network interface
 - `CHECK` check if the configuration is as expected
 - `VERSION` (optional for us) the cni version of the command
 
-As specified by the CNI
-documentation ([Execution protocol](https://www.cni.dev/docs/spec/#section-2-execution-protocol)):
+The runtime passes parameters to the plugin via:
 
-The *runtime* passes parameters to the *plugin* via:
-
-- environment variables
-- configuration: it supplies configuration via stdin (mostly JSON)
+- [protocol parameters](https://www.cni.dev/docs/spec/#parameters) via environment variables (is invocation-specific)
+- [configuration](https://www.cni.dev/docs/spec/#example-configuration) via stdin (is the same for any given network)
 
 The plugin returns a result on stdout on success, or an error on stderr if the operation fails.
 Configuration and results are encoded in JSON.
 
-### Simple CNI plugin
+Example of using the plugin to create a network for a container (`container_id`):
 
-> We need to define a first plugin to create network interface inside a Pod
+```sh
+CNI_COMMAND=ADD \
+CNI_CONTAINERID={container_id} \
+CNI_NETNS=/var/run/netns/{ns_name} \
+CNI_IFNAME=eth0 \
+/opt/cni/bin/orka-sdn < /etc/cni/net.d/10-orka-sdn.conf
+```
+
+Example of using the plugin to delete a network for the container (`container_id`):
+
+```sh
+CNI_COMMAND=DEL \
+CNI_CONTAINERID={container_id} \
+CNI_IFNAME=eth0 \
+/opt/cni/bin/orka-sdn < /etc/cni/net.d/10-orka-sdn.conf
+```
+
+> TODO: add example for `CHECK` & `VERSION` methods(?)
