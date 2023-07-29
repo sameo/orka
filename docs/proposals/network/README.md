@@ -4,10 +4,7 @@
 
 ### Examples
 
-- Flannel: good example, focused on networking
-- Calico
-- Weave
-- Cilium
+- [Kindnet](https://www.tkng.io/cni/kindnet/)
 
 ### Sources
 
@@ -15,6 +12,7 @@
 - [Networks - treeptik k8s](https://treeptik.gitbook.io/k8s/fundamentals/)
 - [Explain NS linux](https://www.youtube.com/watch?v=j_UUnlVC2Ss)
 - [Spec - CNI](https://www.cni.dev/docs/spec/)
+- [TKNG - The Kubernetes Networking Guide](https://www.tkng.io/)
 
 ## Network domain
 
