@@ -80,7 +80,6 @@ Our configuration file for the orka CNI plugin (`10-orka-cni.conf`):
   "plugins": [
     {
       "type": "orka-cni",
-      "bridge": "ork0",
       "subnet": "10.1.0.0/16"
     }
   ]
