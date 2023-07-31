@@ -94,7 +94,7 @@ There are 4 methods available:
 - `ADD` create a network interface
 - `DELETE` delete a network interface
 - `CHECK` check if the configuration is as expected
-- `VERSION` (optional for us) the cni version of the command
+- `VERSION` the CNI version of the plugin
 
 The runtime passes parameters to the plugin via:
 
@@ -104,23 +104,4 @@ The runtime passes parameters to the plugin via:
 The plugin returns a result on stdout on success, or an error on stderr if the operation fails.
 Configuration and results are encoded in JSON.
 
-Example of using the plugin to create a network for a container (`container_id`):
-
-```sh
-CNI_COMMAND=ADD \
-CNI_CONTAINERID={container_id} \
-CNI_NETNS=/var/run/netns/{ns_name} \
-CNI_IFNAME=eth0 \
-/opt/cni/bin/orka-sdn < /etc/cni/net.d/10-orka-sdn.conf
-```
-
-Example of using the plugin to delete a network for the container (`container_id`):
-
-```sh
-CNI_COMMAND=DEL \
-CNI_CONTAINERID={container_id} \
-CNI_IFNAME=eth0 \
-/opt/cni/bin/orka-sdn < /etc/cni/net.d/10-orka-sdn.conf
-```
-
-> TODO: add example for `CHECK` & `VERSION` methods(?)
+> For more, see here: ["Appendix: Examples – cni.dev"](https://www.cni.dev/docs/spec/#appendix-examples)
