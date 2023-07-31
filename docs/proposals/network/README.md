@@ -71,9 +71,21 @@ At the node creation, the node agent needs to download/set the binaries and the 
 - the CNI plugin is located in `/opt/cni/bin/`
 - [configuration files](https://www.cni.dev/docs/spec/#example-configuration) (`.conf`) are located in `/etc/cni/net.d/`
 
-Our configuration file for Orka SDN (`10-orka-sdn.conf`):
+Our configuration file for the orka CNI plugin (`10-orka-cni.conf`):
 
-> TODO: Configuration file `10-orka-sdn.conf`
+```json
+{
+  "cniVersion": "1.0.0",
+  "name": "orknet",
+  "plugins": [
+    {
+      "type": "orka-cni",
+      "bridge": "ork0",
+      "subnet": "10.1.0.0/16"
+    }
+  ]
+}
+```
 
 #### Runtime phase
 
